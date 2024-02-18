@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @user.name %></h1>
+
+<p><%= @user.email %></p>
+<p><%= @user.password %></p>
+<p><%= @user.roles %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_article_path(@user) %></li>
+  <li><%= link_to "Destroy", article_path(@user), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
