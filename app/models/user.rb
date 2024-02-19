@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  belongs_to :company
+  belongs_to :company, optional: true
+
   
   enum roles: {admin:0 ,accountant:1 ,employee:2}
   validates :name, presence: true

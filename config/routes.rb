@@ -1,10 +1,7 @@
-
 Rails.application.routes.draw do
   resources :companies do
-   resources :users
-   resources :products
-   resources :stocks
+    resources :users
   end
-    # other resources..
+  # other resources...
 end
 

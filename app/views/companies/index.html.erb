@@ -1,4 +1,7 @@
-<h1> My Company </h1>
+<h1> My Companies </h1>
 
-<%= link_to "New User", new_company_user_path(@company) %>
+<% @companies.each do |company| %>
+  <%= link_to "New User", new_company_user_path(company) %>
+  <%= link_to 'Show Company', company_path(@company) %>
 
+<% end %>
