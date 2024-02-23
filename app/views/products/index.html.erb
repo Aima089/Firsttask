@@ -1,1 +1,40 @@
-<h1>products list</h1>
+<h1>products list</h1><h1>Products</h1>
+
+<%= search_form_for @q, url: products_path, method: :get do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, 'Name contains' %>
+    <%= f.text_field :name_cont %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_type_eq, 'Product Type' %>
+    <%= f.select :product_type_eq, Product.product_types.keys, prompt: 'Select product type' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Product Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.color %></td>
+        <td><%= product.product_type %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

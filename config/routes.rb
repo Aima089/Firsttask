@@ -1,7 +1,13 @@
+# config/routes.rb
 Rails.application.routes.draw do
-  resources :companies do
-    resources :users
-  end
-  # other resources...
-end
+  root 'dashboard#index'
 
+  resources :dashboard, only: [:index] do
+    collection do
+      get :companies
+    end
+  end
+
+  resources :companies, only: [:index, :new, :create, :show] 
+
+end

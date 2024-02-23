@@ -18,6 +18,9 @@ gem "puma", "~> 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
+
+
+
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
@@ -70,3 +73,5 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "ransack", "~> 4.1"

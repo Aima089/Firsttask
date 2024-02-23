@@ -2,12 +2,29 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>users</h1>
+<h1>Users</h1>
+
+<%= search_form_for @q, url: company_users_path(@company), method: :get do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, 'Name contains' %>
+    <%= f.text_field :name_cont %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role_eq, 'Role' %>
+    <%= f.select :role_eq, User.roles.keys, prompt: 'Select role' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
 
 <div id="users">
   <% @users.each do |user| %>
     <p>
-      <%= link_to "Show this user", company_user_path(@company, user) %>
+      <%= user.name %>
+      <%= link_to "user", company_user_path(@company, user) %>
     </p>
   <% end %>
 </div>

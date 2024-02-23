@@ -3,10 +3,19 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result.includes(:company, :stocks)
   end
+  def search
+
+  end
+  
+  
   def show
     @user = User.find(params[:id])
     @company = @user.company 
+    @users = @company.users.where(name: params[:name])
+
   end
 
   def new
@@ -35,8 +44,6 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
-
   def destroy
     @user.destroy
     redirect_to company_users_path(@company), notice: 'User was successfully destroyed.'
@@ -46,10 +53,15 @@ class UsersController < ApplicationController
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    # @company = Company.find(params[:company_id])
   end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :role)
   end
+  def search_param
+    params.require(:user).permit(:name)
+  end
+
+  
 end
