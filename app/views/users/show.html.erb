@@ -5,8 +5,8 @@
 <p><%= @user.email %></p>
 <p><%= @user.password %></p>
 <p><%= @user.roles %></p>
-<lu>
-<%= button_to "Edit", edit_company_user_path(@company, @user), method: :get %>
-<%= button_to "Destroy", company_user_path(@company, @user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, method: :get %>
 
-<%= button_to "Back to companies", companies_path, method: :get %>
+<ul>
+  <li><%= link_to "Edit", edit_company_user_path(@company, @user) %></li>
+  <li><%= link_to "Destroy", company_user_path(@company, @user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+  </ul>

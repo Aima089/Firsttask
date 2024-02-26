@@ -1,9 +1,15 @@
 <h1>Editing user</h1>
 
-<%= render partial: 'users/form', locals: { company: @company, user: @user } %>
-
+<%= render "form", user: @user %>
 
 <br>
+<ul>
+  <li><%= link_to "Edit", edit_company_user_path(@company, @user) %></li>
+  <li><%= link_to "Destroy", company_user_path(@company, @user), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
 
 
 <div>

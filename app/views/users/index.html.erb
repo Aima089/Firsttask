@@ -4,14 +4,29 @@
 
 <h1>Users</h1>
 
+<%= search_form_for @q, url: company_users_path(@company), method: :get do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, 'Name contains' %>
+    <%= f.text_field :name_cont %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role_eq, 'Role' %>
+    <%= f.select :role_eq, User.roles.keys, prompt: 'Select role' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
 <div id="users">
   <% @users.each do |user| %>
     <p>
       <%= user.name %>
-      <%= link_to 'Show User', company_user_path(@company ,user) %>
+      <%= link_to "user", company_user_path(@company, user) %>
     </p>
   <% end %>
-  <%= button_to "Back to companies", companies_path, method: :get %>
-
 </div>
 
+<%= link_to "New user", new_company_user_path(@company) %>
