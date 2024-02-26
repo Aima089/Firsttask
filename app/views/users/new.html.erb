@@ -1,5 +1,8 @@
 
 <%= render "form", user: @user %>
 <%= form_with(model: [@company, @user], url: company_users_path(@company)) do |form| %>
+ 
+<% end %>
+<%= button_to "Back to companies", companies_path, method: :get %>
 
-  <% end %>
+ 

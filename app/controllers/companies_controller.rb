@@ -1,12 +1,10 @@
 # app/controllers/companies_controller.rb
-
 class CompaniesController < ApplicationController
-  
+  before_action :set_company, only: [:show, :edit, :update, :destroy]
+
     def index
       @companies = Company.all
       @company = @companies.first
-      @q = Company.ransack(params[:q])
-      @companies = @q.result.includes(:users, :products, :stocks)
     end
     def show
       @company = Company.find(params[:id])
@@ -22,9 +20,15 @@ class CompaniesController < ApplicationController
         render :new
     end
     end
+    def destroy
+      @company.destroy
+      redirect_to companies_path, notice: 'User was successfully destroyed.'
+    end
     
     private
-  
+    def set_company
+      @company = Company.find(params[:id])
+    end
     
     def company_params
       params.require(:company).permit(:name, :date)

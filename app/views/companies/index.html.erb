@@ -3,20 +3,18 @@
 <% @companies.each do |company| %>
   <p>
   <%= company.name %>
+  <%= link_to 'Show Company', company_path(company) %>
+  </p>
 
-  <%= link_to 'Show Detail', company_path(@company) %>
-   </p>
 <% end %>
 
-
 <div>
-<%= link_to 'Add New Company', new_company_path, class: 'btn btn-primary' %>
+<%= button_to 'Add New Company', new_company_path, method: :get %>
 
 </div>
 <div>
 <%= button_to "Back to dashboard",dashboard_index_path, method: :get %>
 </div>
-
 
 
 
