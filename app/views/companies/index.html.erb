@@ -1,7 +1,22 @@
 <h1> My Companies </h1>
 
 <% @companies.each do |company| %>
-  <%= link_to "New User", new_company_user_path(company) %>
-  <%= link_to 'Show Company', company_path(@company) %>
+  <p>
+  <%= company.name %>
+  <%= link_to 'Show Company', company_path(company) %>
+  </p>
 
 <% end %>
+
+<div>
+<%= button_to 'Add New Company', new_company_path, method: :get %>
+
+</div>
+<div>
+<%= button_to "Back to dashboard",dashboard_index_path, method: :get %>
+</div>
+
+
+
+
+
