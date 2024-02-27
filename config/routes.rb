@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   root 'dashboard#index'
 
@@ -9,7 +8,10 @@ Rails.application.routes.draw do
   end
 
   resources :companies do
-    resources :users
+    resources :users do
+      collection do
+        get 'search'
+      end
+    end
   end
-
 end

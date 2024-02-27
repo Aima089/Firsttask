@@ -3,7 +3,11 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Users</h1>
-
+<%= form_tag(search_company_users_path(@company), method: :get) do %>
+  <%= label_tag :query, "Search by name" %>
+  <%= text_field_tag :query, params[:query], placeholder: "Enter user name" %>
+  <%= submit_tag "Search" %>
+<% end %>
 
 <div id="users">
   <% @users.each do |user| %>

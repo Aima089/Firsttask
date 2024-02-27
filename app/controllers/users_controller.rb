@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_company, only: [:index, :new, :create, :destroy, :edit, :update]
+  before_action :set_company, only: [:index, :new, :create, :destroy, :edit, :update, :search]
 
   def index
     @users = @company.users
   end
   def search
+    @users = @company.users.where("name LIKE ?", "%#{params[:query]}%")
+    render :index
 
   end
   
