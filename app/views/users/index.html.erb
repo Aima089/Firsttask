@@ -4,6 +4,7 @@
 
 <h1>Users</h1>
 
+
 <div id="users">
   <% @users.each do |user| %>
     <p>
@@ -11,7 +12,9 @@
       <%= link_to 'Show User', company_user_path(@company ,user) %>
     </p>
   <% end %>
+  
   <%= button_to "Back to companies", companies_path, method: :get %>
 
 </div>
+
 

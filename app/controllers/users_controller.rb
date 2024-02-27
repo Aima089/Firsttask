@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_company, only: [:index, :new, :create, :destroy]
+  before_action :set_company, only: [:index, :new, :create, :destroy, :edit, :update]
 
   def index
     @users = @company.users
@@ -17,7 +17,8 @@ class UsersController < ApplicationController
 
 
   def new
-    @user = User.new
+    @user = @company.users.build
+
   end
   def create
     @user = @company.users.new(user_params)
@@ -45,9 +46,15 @@ class UsersController < ApplicationController
     end
   end
   def destroy
-    @user.destroy
-    redirect_to company_users_path(@company), notice: 'User was successfully destroyed.'
+    @user = User.find(params[:id])
+    if @user.destroy
+      redirect_to company_users_path(@user.company), notice: 'User was successfully destroyed.'
+    else
+      # Handle error
+    end
   end
+  
+  
   private
 
   def set_company
